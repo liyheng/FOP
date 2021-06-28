@@ -25,12 +25,12 @@ bash install_sc2.sh
 
 This will download SC2 into the 3rdparty folder and copy the maps necessary to run over.
 
-The requirements.txt file can be used to install the necessary packages into a virtual environment (not recomended).
+The `requirements.txt` file can be used to install the necessary packages into a virtual environment (not recomended).
 
 ## Run an experiment 
 
 ```shell
-python3 src/main.py --config=qmix --env-config=sc2 with env_args.map_name=2s3z
+python3 src/main.py --config=fop --env-config=sc2 with env_args.map_name=2c_vs_64zg
 ```
 
 The config files act as defaults for an algorithm or environment. 
@@ -41,7 +41,7 @@ They are all located in `src/config`.
 
 To run experiments using the Docker container:
 ```shell
-bash run.sh $GPU python3 src/main.py --config=qmix --env-config=sc2 with env_args.map_name=2s3z
+bash run.sh $GPU python3 src/main.py --config=fop --env-config=sc2 with env_args.map_name=2c_vs_64zg
 ```
 
 All results will be stored in the `Results` folder.
@@ -67,3 +67,6 @@ The saved replays can be watched by double-clicking on them or using the followi
 ```shell
 python -m pysc2.bin.play --norender --rgb_minimap_size 0 --replay NAME.SC2Replay
 ```
+
+**Note:** Replays cannot be watched using the Linux version of StarCraft II. Please use either the Mac or Windows version of the StarCraft II client.
+
