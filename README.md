@@ -1,5 +1,7 @@
 # FOP: Factorizing Optimal Joint Policy of Maximum-Entropy Multi-AgentReinforcement Learning
 
+## Note
+
 This codebase accompanies paper "FOP: Factorizing Optimal Joint Policy of Maximum-Entropy Multi-AgentReinforcement Learning". The implementation is based on [PyMARL](https://github.com/oxwhirl/pymarl) and [SMAC](https://github.com/oxwhirl/smac) codebases which are open-sourced. 
 
 The implementation of the following methods can also be found in this codebase, which are finished by the authors of [PyMARL](https://github.com/oxwhirl/pymarl):
