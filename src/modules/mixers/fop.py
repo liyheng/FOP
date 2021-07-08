@@ -2,7 +2,6 @@ import torch as th
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-import pickle as pkl
 
 
 class FOPMixer(nn.Module):
