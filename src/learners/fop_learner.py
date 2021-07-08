@@ -156,8 +156,8 @@ class FOP_Learner:
         next_chosen_qvals1 = th.gather(target_q_vals1, dim=3, index=next_actions).squeeze(3)
         next_chosen_qvals2 = th.gather(target_q_vals2, dim=3, index=next_actions).squeeze(3)
 
-        target_qvals1, _ = self.target_mixer1(next_chosen_qvals1, states, actions=next_actions_onehot, vs=next_vs1)
-        target_qvals2, _ = self.target_mixer2(next_chosen_qvals2, states, actions=next_actions_onehot, vs=next_vs2)
+        target_qvals1 = self.target_mixer1(next_chosen_qvals1, states, actions=next_actions_onehot, vs=next_vs1)
+        target_qvals2 = self.target_mixer2(next_chosen_qvals2, states, actions=next_actions_onehot, vs=next_vs2)
 
         target_qvals = th.min(target_qvals1, target_qvals2)
 
@@ -176,8 +176,8 @@ class FOP_Learner:
         q_taken1 = th.gather(q_vals1[:,:-1], dim=3, index=actions).squeeze(3)
         q_taken2 = th.gather(q_vals2[:,:-1], dim=3, index=actions).squeeze(3)
 
-        q_taken1, q_attend_regs1 = mixer1(q_taken1, states[:, :-1], actions=actions_onehot, vs=vs1[:, :-1])
-        q_taken2, q_attend_regs2 = mixer2(q_taken2, states[:, :-1], actions=actions_onehot, vs=vs2[:, :-1])
+        q_taken1 = mixer1(q_taken1, states[:, :-1], actions=actions_onehot, vs=vs1[:, :-1])
+        q_taken2 = mixer2(q_taken2, states[:, :-1], actions=actions_onehot, vs=vs2[:, :-1])
 
         td_error1 = q_taken1 - targets.detach()
         td_error2 = q_taken2 - targets.detach()
@@ -186,9 +186,9 @@ class FOP_Learner:
 
         # 0-out the targets that came from padded data
         masked_td_error1 = td_error1 * mask
-        loss1 = (masked_td_error1 ** 2).sum() / mask.sum() + q_attend_regs1
+        loss1 = (masked_td_error1 ** 2).sum() / mask.sum() 
         masked_td_error2 = td_error2 * mask
-        loss2 = (masked_td_error2 ** 2).sum() / mask.sum() + q_attend_regs2
+        loss2 = (masked_td_error2 ** 2).sum() / mask.sum() 
         
         # Optimise
         self.c_optimiser1.zero_grad()
