@@ -13,7 +13,6 @@ target_update_interval: 200
 lr: 0.0005
 c_lr: 0.0005
 
-# use COMA
 agent_output_type: "pi_logits"
 td_lambda: 0.8
 learner: "fop_learner"
@@ -21,13 +20,6 @@ learner: "fop_learner"
 name: "fop"
 buffer_size: 5000
 
-# use QPLEX
 mixing_embed_dim: 32
-hypernet_embed: 64
-adv_hypernet_layers: 1
-adv_hypernet_embed: 64
-
-# use QATTEN
 n_head: 4  
-attend_reg_coef: 0.001  
 burn_in_period: 100
